@@ -1,0 +1,14 @@
+{
+  "name": "studybuddy-chatbot",
+  "version": "1.0.0",
+  "description": "A CS Study Buddy chatbot built with a custom system prompt on the Gemini API",
+  "type": "module",
+  "main": "chatbot.js",
+  "scripts": {
+    "start": "node chatbot.js",
+    "chat": "node chatbot.js --chat"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
