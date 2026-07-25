@@ -12,7 +12,7 @@ The purpose of this repository is to document my progress, showcase my work, and
 
 **Aafia Azhar**
 
-🎓 Computer Systems Engineering Graduate 
+🎓 Computer Systems Engineering Graduate  
 🏫 Sukkur IBA University  
 🤖 Interested in Artificial Intelligence, Machine Learning, Prompt Engineering, and Web Development.
 
@@ -28,8 +28,8 @@ Neurofive-Generative-AI-Internship
 │   └── Task-02-Reusable-Prompt-Library
 │
 ├── Week-02
-│   ├── Task-01
-│   └── Task-02
+│   ├── Task-01-Custom-AI-Chatbot-System-Prompt
+│   └── Task-02-Chain-of-Thought-Persona-Prompting
 │
 ├── Week-03
 │
@@ -46,7 +46,8 @@ Neurofive-Generative-AI-Internship
 |------|------|--------|
 | ✅ Week 01 | Prompt Basics – Zero-Shot vs Few-Shot Showdown | Completed |
 | ✅ Week 01 | Build Your First Reusable Prompt Library | Completed |
-| ⏳ Week 02 | Coming Soon | Pending |
+| ✅ Week 02 | Custom AI Chatbot with a System Prompt | Completed |
+| ✅ Week 02 | Chain-of-Thought & Persona Prompting | Completed |
 | ⏳ Week 03 | Coming Soon | Pending |
 | ⏳ Week 04 | Coming Soon | Pending |
 
@@ -61,6 +62,8 @@ Neurofive-Generative-AI-Internship
 - 📊 Microsoft Excel
 - 🌐 Git & GitHub
 - 💻 Visual Studio Code
+- ⚡ Node.js
+- 📦 npm
 
 ---
 
@@ -69,11 +72,16 @@ Neurofive-Generative-AI-Internship
 - Prompt Engineering
 - Zero-Shot Prompting
 - Few-Shot Prompting
+- Chain-of-Thought Prompting
+- Persona Prompting
+- System Prompt Engineering
 - Prompt Templates
 - AI Output Evaluation
 - Prompt Optimization
 - Large Language Models (LLMs)
+- Conversational AI
 - Technical Documentation
+- JavaScript (Node.js)
 - Git & GitHub Version Control
 
 ---
@@ -85,6 +93,7 @@ Each task folder may include:
 - 📄 Report / Documentation
 - 🎥 Demo Video
 - 📘 README File
+- 💻 Source Code (when applicable)
 - 📷 Screenshots (when applicable)
 - 🔗 LinkedIn Post Link (if applicable)
 
@@ -98,6 +107,7 @@ Throughout this internship, I aim to:
 - Explore real-world applications of Generative AI.
 - Build reusable prompt libraries.
 - Improve AI interaction and response quality.
+- Develop AI-powered applications using Large Language Models.
 - Develop a professional GitHub portfolio.
 
 ---
@@ -105,6 +115,7 @@ Throughout this internship, I aim to:
 ## 📈 Progress
 
 - ✅ Week 01 Completed
+- ✅ Week 02 Completed
 - 🔄 More weeks will be added throughout the internship.
 
 ---
