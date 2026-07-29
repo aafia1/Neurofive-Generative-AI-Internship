@@ -56,9 +56,7 @@ This prints the raw output for each of the 6 test messages and reports
 pass/fail based on whether `json.loads()` succeeds and all required keys
 are present.
 
-**Never hardcode an API key in a script or commit it to git.** Use an
-environment variable (as above) or a local `.env` file that's listed in
-`.gitignore`.
+
 
 ## Result summary
 
