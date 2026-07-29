@@ -4,7 +4,7 @@ Welcome to my internship repository! 👋
 
 This repository contains all the weekly tasks, assignments, projects, and learning outcomes completed during my **Generative AI & Prompt Engineering Internship** at **Neurofive Solutions**.
 
-The purpose of this repository is to document my progress, showcase my work, and build a professional portfolio while exploring prompt engineering, generative AI, and large language models.
+The purpose of this repository is to document my progress, showcase my work, and build a professional portfolio while exploring Prompt Engineering, Generative AI, Retrieval-Augmented Generation (RAG), and Large Language Models (LLMs).
 
 ---
 
@@ -32,6 +32,8 @@ Neurofive-Generative-AI-Internship
 │   └── Task-02-Chain-of-Thought-Persona-Prompting
 │
 ├── Week-03
+│   ├── Task-01-RAG-Mini-Project
+│   └── Task-02-Structured-JSON-Outputs
 │
 ├── Week-04
 │
@@ -48,7 +50,8 @@ Neurofive-Generative-AI-Internship
 | ✅ Week 01 | Build Your First Reusable Prompt Library | Completed |
 | ✅ Week 02 | Custom AI Chatbot with a System Prompt | Completed |
 | ✅ Week 02 | Chain-of-Thought & Persona Prompting | Completed |
-| ⏳ Week 03 | Coming Soon | Pending |
+| ✅ Week 03 | RAG Mini-Project — Chat With Your Own Document | Completed |
+| ✅ Week 03 | Structured Outputs — Get Clean JSON From Any Prompt | Completed |
 | ⏳ Week 04 | Coming Soon | Pending |
 
 ---
@@ -58,10 +61,14 @@ Neurofive-Generative-AI-Internship
 - 🤖 ChatGPT
 - 💎 Google Gemini
 - 🧠 Claude AI
+- 📚 NotebookLM
 - 📝 Microsoft Word
 - 📊 Microsoft Excel
 - 🌐 Git & GitHub
 - 💻 Visual Studio Code
+- 🐍 Python
+- 📦 JSON Schema
+- 🔍 Retrieval-Augmented Generation (RAG)
 - ⚡ Node.js
 - 📦 npm
 
@@ -78,10 +85,18 @@ Neurofive-Generative-AI-Internship
 - Prompt Templates
 - AI Output Evaluation
 - Prompt Optimization
+- Retrieval-Augmented Generation (RAG)
+- Document Grounding
+- AI Hallucination Detection
+- Structured Outputs
+- JSON Schema Design
+- JSON Validation
+- API Response Formatting
 - Large Language Models (LLMs)
 - Conversational AI
 - Technical Documentation
 - JavaScript (Node.js)
+- Python Programming
 - Git & GitHub Version Control
 
 ---
@@ -106,6 +121,8 @@ Throughout this internship, I aim to:
 - Learn advanced Prompt Engineering techniques.
 - Explore real-world applications of Generative AI.
 - Build reusable prompt libraries.
+- Understand Retrieval-Augmented Generation (RAG) and document-based AI systems.
+- Learn to generate structured AI outputs for real-world applications.
 - Improve AI interaction and response quality.
 - Develop AI-powered applications using Large Language Models.
 - Develop a professional GitHub portfolio.
@@ -116,6 +133,7 @@ Throughout this internship, I aim to:
 
 - ✅ Week 01 Completed
 - ✅ Week 02 Completed
+- ✅ Week 03 Completed
 - 🔄 More weeks will be added throughout the internship.
 
 ---
