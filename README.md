@@ -4,7 +4,7 @@ Welcome to my internship repository! 👋
 
 This repository contains all the weekly tasks, assignments, projects, and learning outcomes completed during my **Generative AI & Prompt Engineering Internship** at **Neurofive Solutions**.
 
-The purpose of this repository is to document my progress, showcase my work, and build a professional portfolio while exploring Prompt Engineering, Generative AI, Retrieval-Augmented Generation (RAG), and Large Language Models (LLMs).
+The purpose of this repository is to document my progress, showcase my work, and build a professional portfolio while exploring Prompt Engineering, Generative AI, Retrieval-Augmented Generation (RAG), Multi-Agent AI Systems, and Large Language Models (LLMs).
 
 ---
 
@@ -36,6 +36,9 @@ Neurofive-Generative-AI-Internship
 │   └── Task-02-Structured-JSON-Outputs
 │
 ├── Week-04
+│   └── Multi-Agent Basics- Two AIs Working Together
+│
+├── Week-05
 │
 └── README.md
 ```
@@ -52,7 +55,8 @@ Neurofive-Generative-AI-Internship
 | ✅ Week 02 | Chain-of-Thought & Persona Prompting | Completed |
 | ✅ Week 03 | RAG Mini-Project — Chat With Your Own Document | Completed |
 | ✅ Week 03 | Structured Outputs — Get Clean JSON From Any Prompt | Completed |
-| ⏳ Week 04 | Coming Soon | Pending |
+| ✅ Week 04 | Multi-Agent Basics — Two AIs Working Together | Completed |
+| ⏳ Week 05 | Coming Soon | Pending |
 
 ---
 
@@ -62,11 +66,14 @@ Neurofive-Generative-AI-Internship
 - 💎 Google Gemini
 - 🧠 Claude AI
 - 📚 NotebookLM
+- 🤖 Groq API
 - 📝 Microsoft Word
 - 📊 Microsoft Excel
 - 🌐 Git & GitHub
 - 💻 Visual Studio Code
 - 🐍 Python
+- 🌐 HTML5
+- ⚙️ JavaScript (ES6)
 - 📦 JSON Schema
 - 🔍 Retrieval-Augmented Generation (RAG)
 - ⚡ Node.js
@@ -92,6 +99,11 @@ Neurofive-Generative-AI-Internship
 - JSON Schema Design
 - JSON Validation
 - API Response Formatting
+- Multi-Agent AI Systems
+- AI Agent Orchestration
+- Sequential Prompt Chaining
+- Role-Based Prompt Engineering
+- Browser-Based AI Applications
 - Large Language Models (LLMs)
 - Conversational AI
 - Technical Documentation
@@ -123,6 +135,8 @@ Throughout this internship, I aim to:
 - Build reusable prompt libraries.
 - Understand Retrieval-Augmented Generation (RAG) and document-based AI systems.
 - Learn to generate structured AI outputs for real-world applications.
+- Explore Multi-Agent AI systems and collaborative AI workflows.
+- Design AI workflows where multiple agents work together to solve tasks.
 - Improve AI interaction and response quality.
 - Develop AI-powered applications using Large Language Models.
 - Develop a professional GitHub portfolio.
@@ -134,6 +148,7 @@ Throughout this internship, I aim to:
 - ✅ Week 01 Completed
 - ✅ Week 02 Completed
 - ✅ Week 03 Completed
+- ✅ Week 04 Completed
 - 🔄 More weeks will be added throughout the internship.
 
 ---
