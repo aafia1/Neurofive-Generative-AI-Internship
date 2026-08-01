@@ -139,7 +139,7 @@ The repository also includes a demonstration video showcasing the Writer and Edi
 
 Once GitHub Pages is enabled, the live project will be available here:
 
-**https://aafia1.github.io/Neurofive-Generative-AI-Internship/Week-04/writer-editor-pipeline.html**
+**[https://aafia1.github.io/Neurofive-Generative-AI-Internship/Week-04/writer-editor-pipeline.html](https://aafia1.github.io/Neurofive-Generative-AI-Internship/Week-04/Multi-Agent%20Basics-%20Two%20AIs%20Working%20Together/writer-editor-pipeline.html)**
 
 ---
 
