@@ -1,87 +1,148 @@
-# Multi-Agent Basics — Two AIs Working Together
+# 🤖 Multi-Agent Basics — Two AIs Working Together
 
-This project demonstrates a simple but effective multi-agent workflow: one AI writes a first draft, and a second AI reviews, improves, and explains the changes. It is a polished, browser-based version of a manual two-step agent pipeline that is easy to present, run, and upload to GitHub.
+This project demonstrates a simple yet effective **multi-agent AI workflow**, where one AI generates an initial draft and another AI reviews, refines, and improves it. It provides a clean browser-based interface for understanding how multiple AI agents can collaborate to produce higher-quality results.
 
-## Why this project matters
+---
 
-The biggest shift in modern AI is moving from a single prompt producing one answer to multiple specialized agents collaborating on the same task. This demo shows that idea in a clear and accessible way:
+## 📌 Project Overview
 
-- Agent 1 acts as the Writer and generates an initial draft.
-- Agent 2 acts as the Editor and refines the content for clarity, flow, and strength.
-- The output of the first agent becomes the input of the second agent, which is the core of the orchestration.
+Modern AI applications increasingly rely on multiple specialized agents rather than a single prompt-response interaction. This project showcases that concept through a simple two-agent pipeline:
 
-## What the project includes
+- ✍️ **Writer Agent** – Generates the initial draft based on the user's topic.
+- 📝 **Editor Agent** – Reviews, edits, and enhances the draft while preserving its original meaning.
 
-- A browser UI for running the pipeline live
-- A Writer agent with a clear drafting persona
-- An Editor agent with a review-and-revision persona
-- A visible list of the changes the Editor made
-- A run history panel so you can compare multiple topics easily
+The output of the Writer becomes the input of the Editor, demonstrating a basic form of **AI agent orchestration**.
 
-## Project files
+---
 
-| File | Purpose |
-|---|---|
-| [writer-editor-pipeline.html](writer-editor-pipeline.html) | The polished live demo you can open in a browser and present in a video.
-| [writer-editor-pipeline.js](writer-editor-pipeline.js) | The Node.js version of the same two-agent pipeline for terminal-based runs.
-| [README.md](README.md) | GitHub-ready project documentation and setup guide. |
+## ✨ Features
 
-## How the pipeline works
+- Interactive browser-based interface
+- Writer and Editor AI workflow
+- Side-by-side draft refinement process
+- Displays editing notes and improvements
+- Maintains a history of previous runs
+- Simple and easy-to-understand implementation
 
-### Agent 1 — Writer
-The Writer is responsible for producing a clear, informative draft around a topic. Its job is to generate ideas quickly and provide a strong first version, even if it is not perfectly polished.
+---
 
-### Agent 2 — Editor
-The Editor receives the raw draft and improves it by:
+## 📂 Project Structure
 
-- tightening weak sentences
-- improving structure and transitions
-- strengthening openings and closings
-- removing repetition and filler
-- preserving the original ideas and voice
-
-This handoff creates the core multi-agent experience: draft first, then refine.
-
-## Run it locally
-
-### Option 1 — Browser demo (recommended for presentation)
-1. Open [writer-editor-pipeline.html](writer-editor-pipeline.html) in your browser.
-2. Enter a topic.
-3. Click Run Pipeline.
-4. Review the raw draft, the revised version, and the Editor's notes.
-
-### Option 2 — Node.js version
-```bash
-npm init -y
-
-# Windows PowerShell
-$env:GROQ_API_KEY="gsk_..."
-
-# Mac/Linux
-export GROQ_API_KEY="gsk_..."
-
-node writer-editor-pipeline.js "the history of the printing press"
+```text
+Week-04/
+│
+├── README.md
+│
+└── Multi-Agent Basics- Two AIs Working Together/
+    ├── writer-editor-pipeline.html
+    ├── writer-editor-pipeline.js
+    └── Demo Video.mp4
 ```
 
-> The app uses Groq's API through an OpenAI-compatible endpoint. It is free to use for testing and requires only a Groq API key.
+---
 
-## What to compare in your demo
+## ⚙️ How the Pipeline Works
 
-Run the pipeline on two different topics and note the differences in the before/after results. Good things to compare include:
+### ✍️ Writer Agent
 
-- how much the Editor improved the opening
-- whether the structure became more logical
-- how much filler or repetition was removed
-- how much the closing became stronger
+The Writer Agent creates the first draft based on the provided topic. Its goal is to quickly generate informative and relevant content.
 
-## Suggested video structure
+### 📝 Editor Agent
 
-1. Introduce the concept of multi-agent orchestration.
-2. Show the Writer and Editor roles clearly.
-3. Run one example live and explain the before/after transformation.
-4. Show a second topic briefly to highlight consistency.
-5. End with a short reflection on why separating drafting from editing improves output quality.
+The Editor Agent reviews the Writer's output and improves it by:
 
-## GitHub-ready notes
+- Enhancing clarity
+- Improving sentence structure
+- Strengthening introductions and conclusions
+- Removing repetitive or unnecessary content
+- Preserving the original meaning
 
-This repository is designed to be easy to share and present. The UI is more polished for visual impact, while the code remains simple enough to explain clearly in a short assignment or demo video.
+This sequential workflow demonstrates how specialized AI agents can collaborate to improve overall output quality.
+
+---
+
+## 🚀 Running the Project
+
+### Option 1: Browser Demo (Recommended)
+
+1. Open **writer-editor-pipeline.html** in any modern web browser.
+2. Enter a topic.
+3. Click **Run Pipeline**.
+4. Review:
+   - Writer's Draft
+   - Editor's Improved Version
+   - Editor's Notes
+
+---
+
+### Option 2: Node.js Version
+
+Initialize Node.js:
+
+```bash
+npm init -y
+```
+
+Set your Groq API key.
+
+**Windows (PowerShell)**
+
+```powershell
+$env:GROQ_API_KEY="your_api_key"
+```
+
+**Mac/Linux**
+
+```bash
+export GROQ_API_KEY="your_api_key"
+```
+
+Run the project:
+
+```bash
+node writer-editor-pipeline.js "The Future of Artificial Intelligence"
+```
+
+---
+
+## 📊 Technologies Used
+
+- HTML5
+- JavaScript (ES6)
+- Node.js
+- Groq API
+- Prompt Engineering
+- Multi-Agent AI Workflow
+
+---
+
+## 🎯 Learning Outcomes
+
+Through this project, I learned:
+
+- Multi-agent AI orchestration
+- Role-based prompt engineering
+- Sequential AI workflows
+- Prompt chaining
+- Draft-review pipelines
+- Browser-based AI interfaces
+
+---
+
+## 🎥 Demo
+
+The repository also includes a demonstration video showcasing the Writer and Editor agents collaborating on different topics.
+
+---
+
+## 🌐 Live Demo
+
+Once GitHub Pages is enabled, the live project will be available here:
+
+**https://aafia1.github.io/Neurofive-Generative-AI-Internship/Week-04/writer-editor-pipeline.html**
+
+---
+
+## Acknowledgement
+
+Developed as part of the **Neurofive Generative AI & Prompt Engineering Internship** to explore the fundamentals of multi-agent AI systems and collaborative prompt engineering.
