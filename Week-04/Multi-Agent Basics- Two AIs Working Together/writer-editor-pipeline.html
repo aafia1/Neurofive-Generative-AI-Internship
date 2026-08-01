@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft & Review — Two-Agent AI Pipeline</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #07131f;
+    --panel: rgba(10, 22, 37, 0.92);
+    --panel-2: #11253d;
+    --border: rgba(255,255,255,0.12);
+    --text: #f5f8ff;
+    --muted: #95a7c2;
+    --writer: #8b5cf6;
+    --writer-soft: rgba(139,92,246,0.16);
+    --editor: #ff7aa2;
+    --editor-soft: rgba(255,122,162,0.16);
+    --accent: #3dd9c4;
+    --shadow: 0 20px 45px rgba(0,0,0,0.28);
+    --radius: 20px;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --display: 'Plus Jakarta Sans', var(--sans);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--sans);
+    color: var(--text);
+    background:
+      radial-gradient(circle at top left, rgba(139,92,246,0.34), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(61,217,196,0.24), transparent 30%),
+      var(--bg);
+    padding: 28px 18px 60px;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    border-radius: 28px;
+    padding: 28px 28px 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: var(--mono);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.05;
+    margin: 0 0 10px;
+    letter-spacing: -0.03em;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 760px;
+    margin: 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .hero-card {
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+  }
+
+  .hero-card strong {
+    display: block;
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    font-family: var(--mono);
+  }
+
+  .hero-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .stepper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 24px 0 20px;
+    flex-wrap: wrap;
+  }
+
+  .step {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .step .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1);
+  }
+
+  .step.active .dot { background: var(--writer); box-shadow: 0 0 0 4px rgba(139,92,246,0.18); }
+  .step.active.ed .dot { background: var(--editor); box-shadow: 0 0 0 4px rgba(255,122,162,0.18); }
+  .step.done .dot { background: var(--accent); box-shadow: 0 0 0 4px rgba(61,217,196,0.18); }
+  .step.active, .step.done { color: var(--text); }
+
+  .step-line {
+    width: 24px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .agents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid, .agents { grid-template-columns: 1fr; }
+  }
+
+  .agent {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .agent.live-w { border-color: rgba(139,92,246,0.55); transform: translateY(-2px); }
+  .agent.live-e { border-color: rgba(255,122,162,0.55); transform: translateY(-2px); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    margin-bottom: 10px;
+  }
+
+  .agent.w .badge { background: var(--writer-soft); color: #d8c7ff; }
+  .agent.e .badge { background: var(--editor-soft); color: #ffd4e0; }
+
+  .name {
+    font-family: var(--display);
+    font-size: 22px;
+    margin: 0 0 10px;
+  }
+
+  .persona {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 13px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    white-space: pre-wrap;
+    font-family: var(--mono);
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .chip {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .chip:hover {
+    background: rgba(61,217,196,0.14);
+    border-color: rgba(61,217,196,0.3);
+  }
+
+  label.field-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  input[type='text'], input[type='password'] {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 15px;
+    outline: none;
+  }
+
+  input:focus {
+    border-color: rgba(61,217,196,0.45);
+    box-shadow: 0 0 0 3px rgba(61,217,196,0.12);
+  }
+
+  .keyhint {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+
+  .keyhint a {
+    color: #8ddcff;
+    text-decoration: none;
+  }
+
+  .run-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .run-row .field { flex: 1; min-width: 220px; }
+
+  button {
+    border: none;
+    background: linear-gradient(135deg, var(--writer), #5d8bff);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.2s ease;
+  }
+
+  button:hover:not(:disabled) { filter: brightness(1.05); transform: translateY(-1px); }
+  button:active:not(:disabled) { transform: translateY(0); }
+  button:disabled { opacity: 0.55; cursor: default; }
+
+  .error {
+    background: rgba(255,122,162,0.14);
+    border: 1px solid rgba(255,122,162,0.3);
+    color: #ffdce7;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-size: 13px;
+  }
+
+  .outputs { display: none; margin-top: 8px; }
+  .outputs.show { display: block; }
+
+  .transcript {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 20px 18px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .t-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .transcript h2 {
+    font-family: var(--display);
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .transcript.draft h2 { color: #d9c7ff; }
+  .transcript.final h2 { color: #ffd2df; }
+
+  .wc {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .body-text {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.7;
+    font-size: 15px;
+    white-space: pre-wrap;
+    color: #f7f8fb;
+  }
+
+  .notes-card {
+    background: rgba(255,122,162,0.11);
+    border: 1px solid rgba(255,122,162,0.25);
+    border-radius: var(--radius);
+    padding: 18px 18px 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .nc-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ffd9e4;
+    margin-bottom: 12px;
+  }
+
+  .notes-card ol { margin: 0; padding-left: 18px; }
+  .notes-card li { margin-bottom: 8px; color: #fceff3; line-height: 1.6; font-size: 13px; }
+
+  .history { margin-top: 34px; }
+  .history h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+  }
+
+  .entry {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    font-size: 13px;
+  }
+
+  .entry:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+  }
+
+  .entry .topic-name { font-weight: 600; color: #f2f7ff; }
+  .entry .t { font-family: var(--mono); font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">● Multi-agent demo</div>
+    <h1>Write first. <em>Refine second.</em></h1>
+    <p class="lede">This demo shows a simple two-agent workflow in action: one AI drafts content, while a second AI reviews and improves the result with clear, visible notes.</p>
+
+    <div class="hero-grid">
+      <div class="hero-card">
+        <strong>What you’ll see</strong>
+        <p>The Writer produces a first draft, the Editor critiques it, and the final output is returned with a short explanation of what changed.</p>
+      </div>
+      <div class="hero-card">
+        <strong>Why it matters</strong>
+        <p>It is a lightweight example of agentic orchestration: one agent handles drafting, another focuses on revision and quality.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stepper" id="stepper">
+    <div class="step" id="s1"><span class="dot"></span>Draft</div>
+    <div class="step-line"></div>
+    <div class="step ed" id="s2"><span class="dot"></span>Review</div>
+    <div class="step-line"></div>
+    <div class="step" id="s3"><span class="dot"></span>Done</div>
+  </div>
+
+  <div class="agents">
+    <div class="agent w" id="agentW">
+      <div class="badge">Agent 1</div>
+      <div class="name">The Writer</div>
+      <div class="persona" id="writer-prompt"></div>
+    </div>
+    <div class="agent e" id="agentE">
+      <div class="badge">Agent 2</div>
+      <div class="name">The Editor</div>
+      <div class="persona" id="editor-prompt"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <label class="field-label" for="apiKey">Groq API key</label>
+    <input type="password" id="apiKey" placeholder="gsk_..." />
+    <div class="keyhint">Free, no card needed — create one at <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a>.</div>
+  </div>
+
+  <div class="card">
+    <div class="run-row">
+      <div class="field">
+        <label class="field-label" for="topic">Topic</label>
+        <input type="text" id="topic" placeholder='e.g. "why sleep matters for memory"' />
+      </div>
+      <button id="runBtn" onclick="runPipeline()">Run pipeline</button>
+    </div>
+    <div class="chips">
+      <button class="chip" type="button" onclick="useTopic('why sleep matters for memory')">Why sleep matters</button>
+      <button class="chip" type="button" onclick="useTopic('the future of education in AI')">Future of education</button>
+      <button class="chip" type="button" onclick="useTopic('how small habits shape big results')">Small habits</button>
+    </div>
+  </div>
+
+  <div id="errorBox"></div>
+
+  <div class="outputs" id="outputs">
+    <div class="transcript draft">
+      <div class="t-head"><h2>Raw draft</h2><span class="wc" id="draftWc"></span></div>
+      <div class="body-text" id="draftText"></div>
+    </div>
+
+    <div class="transcript final">
+      <div class="t-head"><h2>After editing</h2><span class="wc" id="finalWc"></span></div>
+      <div class="body-text" id="finalText"></div>
+    </div>
+
+    <div class="notes-card">
+      <div class="nc-title">What the Editor changed</div>
+      <ol id="notesList"></ol>
+    </div>
+  </div>
+
+  <div class="history" id="history" style="display:none;">
+    <h3>Past runs</h3>
+    <div id="historyList"></div>
+  </div>
+</div>
+
+<script>
+const WRITER_SYSTEM = `You are DRAFT — a fast first-draft writer.
+Responsibility: given a topic, write a clear, informative 250–350 word
+article: a strong opening hook, 2–3 body points, a brief close.
+Prioritize getting good ideas down over polishing prose — leave some
+rough edges, that is the Editor's job. Output ONLY the article body,
+no title, no meta-commentary.`;
+
+const EDITOR_SYSTEM = `You are REVISE — a meticulous editor and critic.
+Responsibility: you receive a first draft and improve it. Tighten weak
+sentences, fix structure and flow, strengthen the opening and closing,
+correct vague claims, cut filler and repetition. Preserve the author's
+core ideas and voice — do not rewrite from scratch.
+Respond in EXACTLY this format, nothing else:
+[REVISED]
+<the improved article>
+[NOTES]
+<3-6 bullet points, each starting with "-", each naming ONE specific
+change you made and why>`;
+
+document.getElementById('writer-prompt').textContent = WRITER_SYSTEM;
+document.getElementById('editor-prompt').textContent = EDITOR_SYSTEM;
+document.getElementById('topic').addEventListener('keydown', e => { if (e.key === 'Enter') runPipeline(); });
+
+let runHistory = [];
+
+function useTopic(topic) {
+  document.getElementById('topic').value = topic;
+}
+
+async function callAgent(system, userText) {
+  const apiKey = document.getElementById('apiKey').value.trim();
+  if (!apiKey) throw new Error('Paste your Groq API key above first.');
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + apiKey
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      max_tokens: 1000,
+      messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: userText }
+      ]
+    })
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`API error ${res.status}: ${errText.slice(0, 200)}`);
+  }
+
+  const data = await res.json();
+  const text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  if (!text) throw new Error('No text returned from API');
+  return text;
+}
+
+function wordCount(s) { return s.trim().split(/\s+/).filter(Boolean).length; }
+
+function setStep(stage) {
+  const s1 = document.getElementById('s1');
+  const s2 = document.getElementById('s2');
+  const s3 = document.getElementById('s3');
+  [s1, s2, s3].forEach(s => s.classList.remove('active', 'done'));
+  if (stage >= 1) s1.classList.add(stage === 1 ? 'active' : 'done');
+  if (stage >= 2) s2.classList.add(stage === 2 ? 'active' : 'done');
+  if (stage >= 3) s3.classList.add('done');
+  document.getElementById('agentW').classList.toggle('live-w', stage === 1);
+  document.getElementById('agentE').classList.toggle('live-e', stage === 2);
+}
+
+async function runPipeline() {
+  const topic = document.getElementById('topic').value.trim();
+  const btn = document.getElementById('runBtn');
+  const errorBox = document.getElementById('errorBox');
+  errorBox.innerHTML = '';
+  if (!topic) {
+    errorBox.innerHTML = '<div class="error">Enter a topic first.</div>';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Running…';
+  document.getElementById('outputs').classList.remove('show');
+  setStep(1);
+
+  try {
+    const draft = await callAgent(WRITER_SYSTEM, `Topic: ${topic}`);
+    setStep(2);
+    const editorRaw = await callAgent(EDITOR_SYSTEM, `Here is the draft to review:\n\n${draft}`);
+    setStep(3);
+
+    let revised = editorRaw;
+    let notes = [];
+    const revMatch = editorRaw.match(/\[REVISED\]([\s\S]*?)\[NOTES\]/i);
+    const noteMatch = editorRaw.match(/\[NOTES\]([\s\S]*)/i);
+    if (revMatch) revised = revMatch[1].trim();
+    if (noteMatch) {
+      notes = noteMatch[1].split('\n').map(l => l.replace(/^[-*]\s*/, '').trim()).filter(Boolean);
+    }
+
+    document.getElementById('draftText').textContent = draft.trim();
+    document.getElementById('draftWc').textContent = wordCount(draft) + ' words';
+    document.getElementById('finalText').textContent = revised.trim();
+    document.getElementById('finalWc').textContent = wordCount(revised) + ' words';
+    document.getElementById('notesList').innerHTML = notes.map(n => `<li>${n}</li>`).join('') || '<li>No notes returned.</li>';
+    document.getElementById('outputs').classList.add('show');
+
+    runHistory.unshift({ topic, time: new Date().toLocaleTimeString(), draft, revised, notes });
+    renderHistory();
+  } catch (err) {
+    errorBox.innerHTML = `<div class="error">${err.message}</div>`;
+    setStep(0);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Run pipeline';
+  }
+}
+
+function renderHistory() {
+  const hist = document.getElementById('history');
+  const list = document.getElementById('historyList');
+  if (runHistory.length === 0) {
+    hist.style.display = 'none';
+    return;
+  }
+  hist.style.display = 'block';
+  list.innerHTML = runHistory.map((r, i) => `
+    <div class="entry" onclick="loadRun(${i})">
+      <span class="topic-name">${r.topic}</span>
+      <span class="t">${r.time} · ${wordCount(r.draft)}→${wordCount(r.revised)}w</span>
+    </div>
+  `).join('');
+}
+
+function loadRun(i) {
+  const r = runHistory[i];
+  document.getElementById('draftText').textContent = r.draft.trim();
+  document.getElementById('draftWc').textContent = wordCount(r.draft) + ' words';
+  document.getElementById('finalText').textContent = r.revised.trim();
+  document.getElementById('finalWc').textContent = wordCount(r.revised) + ' words';
+  document.getElementById('notesList').innerHTML = r.notes.map(n => `<li>${n}</li>`).join('') || '<li>No notes returned.</li>';
+  document.getElementById('outputs').classList.add('show');
+  document.getElementById('topic').value = r.topic;
+  setStep(3);
+}
+</script>
+</body>
+</html>
