@@ -39,6 +39,7 @@ Neurofive-Generative-AI-Internship
 │   └── Multi-Agent Basics- Two AIs Working Together
 │
 ├── Week-05
+│   └── No-Code AI Automation — Connect AI to a Real Workflow
 │
 └── README.md
 ```
@@ -56,7 +57,7 @@ Neurofive-Generative-AI-Internship
 | ✅ Week 03 | RAG Mini-Project — Chat With Your Own Document | Completed |
 | ✅ Week 03 | Structured Outputs — Get Clean JSON From Any Prompt | Completed |
 | ✅ Week 04 | Multi-Agent Basics — Two AIs Working Together | Completed |
-| ⏳ Week 05 | Coming Soon | Pending |
+| ✅ Week 05 | No-Code AI Automation — Connect AI to a Real Workflow | Completed |
 
 ---
 
@@ -149,6 +150,7 @@ Throughout this internship, I aim to:
 - ✅ Week 02 Completed
 - ✅ Week 03 Completed
 - ✅ Week 04 Completed
+- ✅ Week 05 Completed
 - 🔄 More weeks will be added throughout the internship.
 
 ---
