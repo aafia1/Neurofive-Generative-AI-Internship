@@ -40,7 +40,8 @@ Neurofive-Generative-AI-Internship
 │
 ├── Week-05
 │   └── No-Code AI Automation — Connect AI to a Real Workflow
-│
+├── Week-06
+│   └── research-digest-assistant
 └── README.md
 ```
 
@@ -58,7 +59,7 @@ Neurofive-Generative-AI-Internship
 | ✅ Week 03 | Structured Outputs — Get Clean JSON From Any Prompt | Completed |
 | ✅ Week 04 | Multi-Agent Basics — Two AIs Working Together | Completed |
 | ✅ Week 05 | No-Code AI Automation — Connect AI to a Real Workflow | Completed |
-
+| ✅ Week 06 | Capstone — Research Digest & Literature Review Assistant | Completed |
 ---
 
 ## 🛠️ Tools & Technologies
@@ -151,7 +152,7 @@ Throughout this internship, I aim to:
 - ✅ Week 03 Completed
 - ✅ Week 04 Completed
 - ✅ Week 05 Completed
-- 🔄 More weeks will be added throughout the internship.
+- ✅ Week 06 Completed
 
 ---
 
