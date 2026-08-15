@@ -2,7 +2,7 @@
 
 Welcome to my internship repository! 👋
 
-This repository contains all the weekly tasks, assignments, projects, and learning outcomes completed during my **Generative AI & Prompt Engineering Internship** at **Neurofive Solutions**.
+This repository contains all the weekly tasks, assignments, projects, and learning outcomes completed during my **Generative AI & Prompt Engineering Internship** at **[Neurofive Solutions](https://neurofivesolutions.com/)**.
 
 The purpose of this repository is to document my progress, showcase my work, and build a professional portfolio while exploring Prompt Engineering, Generative AI, Retrieval-Augmented Generation (RAG), Multi-Agent AI Systems, and Large Language Models (LLMs).
 
@@ -170,7 +170,7 @@ By the end of this internship, I:
 
 ## 🤝 Acknowledgements
 
-Special thanks to **Neurofive Solutions** for providing this learning opportunity and practical experience in Generative AI and Prompt Engineering.
+Special thanks to **[Neurofive Solutions](https://neurofivesolutions.com/)** for providing this learning opportunity and practical experience in Generative AI and Prompt Engineering.
 
 ---
 
