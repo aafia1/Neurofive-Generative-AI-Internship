@@ -20,6 +20,9 @@ first pass, and adds a way to ask questions across a whole folder of papers
 at once — grounded in the actual text, not the model's memory.
 
 ## What it does
+### Full app view
+*App overview showing the digest form and generated output* <img width="800" height="580" alt="1" src="https://github.com/user-attachments/assets/4d47c393-61d4-47a2-8b53-7b73d21cd1b9" />
+
 
 ### 1. Paper Digest
 Paste text or upload a PDF/TXT of a paper. The app sends it to Gemini with
