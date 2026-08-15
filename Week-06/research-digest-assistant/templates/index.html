@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Research Digest & Lit Review Assistant</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>📄 Research Digest & Literature Review Assistant</h1>
+    <p class="subtitle">Paste or upload a paper for a structured digest — or ask a question across your paper library.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. Digest a paper</h2>
+      <textarea id="paperText" placeholder="Paste abstract / paper text here..." rows="8"></textarea>
+      <div class="row">
+        <input type="file" id="paperFile" accept=".pdf,.txt">
+        <button id="digestBtn">Generate Digest</button>
+      </div>
+      <div id="digestLoading" class="loading hidden">Analyzing paper...</div>
+      <div id="digestResult" class="result hidden"></div>
+    </section>
+
+    <section class="card">
+      <h2>2. Ask your paper library (RAG)</h2>
+      <p class="hint">Answers are grounded only in files inside <code>sample_papers/</code>.</p>
+      <div class="row">
+        <input type="text" id="question" placeholder="e.g. Which papers use ResNet-50?">
+        <button id="askBtn">Ask</button>
+      </div>
+      <div id="askLoading" class="loading hidden">Searching library...</div>
+      <div id="askResult" class="result hidden"></div>
+    </section>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

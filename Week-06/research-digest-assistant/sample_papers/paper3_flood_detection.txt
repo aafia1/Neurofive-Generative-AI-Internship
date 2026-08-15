@@ -1,0 +1,19 @@
+Title: U-Net and EfficientNetB4 for Satellite-Based Flood Segmentation
+
+Abstract: Rapid flood mapping from satellite imagery is critical for
+disaster response. This paper presents a U-Net segmentation model with an
+EfficientNetB4 encoder for pixel-wise flood detection from Sentinel-1
+SAR imagery, evaluated on a labeled flood segmentation dataset.
+
+Method: A U-Net architecture with an EfficientNetB4 encoder pretrained on
+ImageNet is trained to segment flooded vs non-flooded pixels. Training uses
+a combined Dice and binary cross-entropy loss to handle class imbalance
+between flooded and non-flooded regions.
+
+Results: The model achieves a Dice score of 0.892 and IoU of 0.831 on the
+held-out test set, outperforming a plain U-Net baseline (Dice 0.847, IoU
+0.774) trained without the pretrained encoder.
+
+Limitations: Performance drops in regions with dense urban structures,
+where SAR backscatter patterns are harder to distinguish from flooded
+surfaces. The model has not been validated on optical (non-SAR) imagery.

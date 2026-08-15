@@ -1,0 +1,21 @@
+Title: EfficientNet-Based Lightweight Deepfake Detection for Edge Deployment
+
+Abstract: Many deepfake detection systems are too computationally expensive
+for real-time or on-device use. We investigate EfficientNet-B4 as a
+lightweight alternative to deeper CNN backbones, targeting deployment on
+mobile and edge devices while maintaining competitive accuracy.
+
+Method: Frames are extracted at 5 fps, faces are cropped and aligned, and
+passed through an EfficientNet-B4 backbone with a lightweight classification
+head. We compare EfficientNet-B4 against ResNet-50 and Xception on
+inference latency, model size, and accuracy across FaceForensics++, DFDC,
+and the Ferreira dataset.
+
+Results: EfficientNet-B4 achieves 91.6% accuracy on FaceForensics++, with
+3.2x lower inference latency and 2.5x smaller model size than ResNet-50,
+at a cost of roughly 2-3 percentage points of accuracy on cross-dataset
+evaluation (DFDC: 69.4%, Ferreira: 65.1%).
+
+Limitations: The efficiency gains come with a modest accuracy trade-off,
+and the model was not tested against real-time video streams with variable
+frame rates, which could affect the 5 fps sampling assumption.

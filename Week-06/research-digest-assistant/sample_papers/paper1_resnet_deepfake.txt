@@ -1,0 +1,24 @@
+Title: Cross-Dataset Deepfake Detection Using ResNet-50 Feature Extraction
+
+Abstract: Deepfake detection models often overfit to the dataset they are
+trained on, resulting in poor performance on unseen forgery methods. This
+paper proposes a detection pipeline built on a ResNet-50 backbone, fine-tuned
+on FaceForensics++ and evaluated across FaceForensics++, DFDC, and Celeb-DF.
+We show that data augmentation strategies (random compression, blur, and
+color jitter) meaningfully improve cross-dataset generalization compared to
+a baseline ResNet-50 trained without augmentation.
+
+Method: Face regions are extracted from video frames using a face detector,
+resized to 224x224, and passed through a ResNet-50 backbone pretrained on
+ImageNet. The final classification layer is replaced with a binary
+real/fake head. Training uses cross-entropy loss with class balancing.
+
+Results: The augmented ResNet-50 model achieves 94.2% accuracy on
+FaceForensics++ (in-domain), but drops to 71.8% accuracy on DFDC and 68.3%
+on Celeb-DF (cross-dataset), compared to 61.5% and 58.9% respectively for
+the non-augmented baseline.
+
+Limitations: Performance still degrades substantially on unseen datasets,
+suggesting the model partially relies on dataset-specific compression
+artifacts rather than fully generalizable forgery cues. The study does not
+evaluate against audio-visual deepfakes or diffusion-based face swaps.
