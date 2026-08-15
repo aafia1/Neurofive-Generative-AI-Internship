@@ -144,17 +144,29 @@ Throughout this internship, I aim to:
 - Develop a professional GitHub portfolio.
 
 ---
-
-## 📈 Progress
-
-- ✅ Week 01 Completed
-- ✅ Week 02 Completed
-- ✅ Week 03 Completed
-- ✅ Week 04 Completed
-- ✅ Week 05 Completed
-- ✅ Week 06 Completed
-
 ---
+
+## ✅ Key Takeaways
+
+By the end of this internship, I:
+
+- Designed and tested prompts across zero-shot, few-shot, chain-of-thought,
+  and persona-based strategies, and built a reusable prompt library.
+- Built a RAG pipeline from scratch — chunking, retrieval, and grounded
+  generation — and used it in two separate projects (Week 03 and the
+  Week 06 capstone).
+- Learned to enforce structured JSON outputs from LLMs reliably, including
+  handling model-side inconsistencies (markdown fences, truncation, schema
+  drift) in production code, not just in theory.
+- Connected AI to real workflows and multi-agent systems, moving beyond
+  single-prompt interactions into orchestrated, tool-using pipelines.
+- Shipped a full-stack AI-powered application (Flask + Gemini API + RAG)
+  end-to-end — from prompt design to a working, demoable product with a
+  polished UI.
+- Got hands-on with debugging real API integration issues (model
+  deprecation, JSON parsing failures, SDK version conflicts) — the kind of
+  problems that don't show up in tutorials but define real development work.
+  
 
 ## 🤝 Acknowledgements
 
